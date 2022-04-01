@@ -1,0 +1,11 @@
+FROM python:3 AS build-env
+
+COPY requirements.txt manage.py mldeploy1-1f364a6ff3a7.json /app/
+COPY WeightPredictionAPI /app/WeightPredictionAPI/
+COPY weightpredapi /app/weightpredapi/
+WORKDIR /app
+
+RUN pip3 install -r requirements.txt
+
+EXPOSE 8000
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
